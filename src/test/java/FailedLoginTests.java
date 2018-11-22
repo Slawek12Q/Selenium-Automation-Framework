@@ -26,12 +26,19 @@ public class FailedLoginTests {
         @Test
         public void asUserTryToLogInWithIncorrectLoginAndPassword(){
 
-            webDriver.findElement(By.cssSelector("#Content a")).click();
-            webDriver.findElement(By.cssSelector("#MenuContent a[href*='signonForm']")).click();
-            webDriver.findElement(By.name("username")).sendKeys("Login");
-            webDriver.findElement(By.name("password")).sendKeys("Paswd");
-            webDriver.findElement(By.name("signon")).click();
-            assertEquals(webDriver.findElement(By.cssSelector("#Content ul[class='messages'] li")).getText(), "Invalid username or password. Signon failed.");
+            LandingPage landingPage = new LandingPage(webDriver);
+            landingPage.clickOnEnterStoreLink();
+
+            TopMenuPage topMenuPage = new TopMenuPage(webDriver);
+            topMenuPage.clickOnSignInLink();
+
+            LoginPage loginPage = new LoginPage(webDriver);
+            loginPage.typeIntoUserNameField("NotExistingLogin");
+            loginPage.typeIntoPasswordField("NotProperPassword");
+            loginPage.clickOnLoginButton();
+            String warningMessage = loginPage.getWarningMessage();
+
+            assertEquals(warningMessage, "Invalid username or password. Signon failed.");
         }
 
 
