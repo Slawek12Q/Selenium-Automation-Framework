@@ -15,17 +15,17 @@ public class PossitiveLoginTest extends BaseTest {
 
 
 
-        LandingPage landingPage = new LandingPage(webDriver);
+        LandingPage landingPage = new LandingPage();
         landingPage.clickOnEnterStoreLink();
 
-        TopMenuPage topMenuPage = new TopMenuPage(webDriver);
+        TopMenuPage topMenuPage = new TopMenuPage();
         topMenuPage.clickOnSignInLink();
 
-        LoginPage loginPage = new LoginPage(webDriver);
+        LoginPage loginPage = new LoginPage();
         loginPage.typeIntoUserNameField("j2ee");
         loginPage.typeIntoPasswordField("j2ee");
         loginPage.clickOnLoginButton();
-        FooterPage footerPage = new FooterPage(webDriver);
+        FooterPage footerPage = new FooterPage();
 
         assertTrue(footerPage.isBannerAfterLoginDisplayed());
 

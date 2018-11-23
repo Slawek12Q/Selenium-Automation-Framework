@@ -16,13 +16,13 @@ public class FailedLoginTests extends BaseTest {
         @Test
         public void asUserTryToLogInWithIncorrectLoginAndPassword(){
 
-            LandingPage landingPage = new LandingPage(webDriver);
+            LandingPage landingPage = new LandingPage();
             landingPage.clickOnEnterStoreLink();
 
-            TopMenuPage topMenuPage = new TopMenuPage(webDriver);
+            TopMenuPage topMenuPage = new TopMenuPage();
             topMenuPage.clickOnSignInLink();
 
-            LoginPage loginPage = new LoginPage(webDriver);
+            LoginPage loginPage = new LoginPage();
             loginPage.typeIntoUserNameField("NotExistingLogin");
             loginPage.typeIntoPasswordField("NotProperPassword");
             loginPage.clickOnLoginButton();

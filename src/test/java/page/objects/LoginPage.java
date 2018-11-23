@@ -1,10 +1,12 @@
 package page.objects;
 
+import driver.manager.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import waits.WaitForElement;
 
 public class LoginPage {
 
@@ -20,14 +22,13 @@ public class LoginPage {
     @FindBy(css = "#Content ul[class='messages'] li")
     private WebElement messageLabel;
 
-    private WebDriver driver;
 
-    public LoginPage (WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public LoginPage (){
+        PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
     public void typeIntoUserNameField(String username) {
+        WaitForElement.waitUntilElementIsVisible(usernameField);
         usernameField.clear();
         usernameField.sendKeys(username);
     }
@@ -42,6 +43,7 @@ public class LoginPage {
     }
 
     public String getWarningMessage() {
+        WaitForElement.waitUntilElementIsVisible(messageLabel);
         String warningText = messageLabel.getText();
         return warningText;
     }
