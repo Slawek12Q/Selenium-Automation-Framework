@@ -16,6 +16,15 @@ public class PossitiveLoginTest extends BaseTest {
 
 
         LandingPage landingPage = new LandingPage();
+
+        boolean isBannerAfterLoginDisplayed = landingPage
+                .clickOnEnterStoreLink()
+                .clickOnSignInLink()
+                .typeIntoUserNameField("j2ee")
+                .typeIntoPasswordField("j2ee")
+                .clickOnLoginButton()
+                .isBannerAfterLoginDisplayed();
+/*
         landingPage.clickOnEnterStoreLink();
 
         TopMenuPage topMenuPage = new TopMenuPage();
@@ -25,9 +34,9 @@ public class PossitiveLoginTest extends BaseTest {
         loginPage.typeIntoUserNameField("j2ee");
         loginPage.typeIntoPasswordField("j2ee");
         loginPage.clickOnLoginButton();
-        FooterPage footerPage = new FooterPage();
+        FooterPage footerPage = new FooterPage();*/
 
-        assertTrue(footerPage.isBannerAfterLoginDisplayed());
+        assertTrue(isBannerAfterLoginDisplayed);
 
     }
 }

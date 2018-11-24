@@ -1,6 +1,8 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +12,7 @@ import waits.WaitForElement;
 
 public class LandingPage {
 
+    private Logger logger = LogManager.getRootLogger();
     @FindBy(css = "#Content a")
     private WebElement enterStoreLink;
 
@@ -17,9 +20,11 @@ public class LandingPage {
         PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
-    public void clickOnEnterStoreLink() {
+    public TopMenuPage clickOnEnterStoreLink() {
         WaitForElement.waitUntilElementIsClickable(enterStoreLink);
         enterStoreLink.click();
+        logger.info("Clicked on Enter Store link");
+        return new TopMenuPage();
     }
 }
 
